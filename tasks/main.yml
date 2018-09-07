@@ -1,0 +1,37 @@
+- name: Instal libXss
+  apt:
+    name: libxss1
+    state: present
+
+- name: Install firefox
+  apt:
+    name: firefox
+    state: present
+
+- name: Check if geckodriver is installed
+  stat:
+    path: "/usr/local/bin/geckodriver"
+  register: geckodriver_binary
+
+- name: Download geckodriver
+  get_url:
+    url: "https://github.com/mozilla/geckodriver/releases/download/v{{ geckodriver_version }}/geckodriver-v{{ geckodriver_version }}-linux64.tar.gz"
+    dest: "/tmp/geckodriver.tar.gz"
+  when: geckodriver_binary.stat.exists == false
+
+- name: Prepare directories
+  file:
+    path: "/usr/local/bin"
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  when: geckodriver_binary.stat.exists == false
+
+- name: Unarchive geckodriver
+  unarchive:
+    src: "/tmp/geckodriver.tar.gz"
+    dest: "/usr/local/bin"
+    mode: 0755
+    remote_src: true
+  when: geckodriver_binary.stat.exists == false
