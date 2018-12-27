@@ -1,6 +1,6 @@
 # firefox-driver
 
-[![Build Status](https://travis-ci.com/iroquoisorg/ansible-role-firefox-driver.svg?branch=master)](https://travis-ci.com/iroquoisorg/ansible-role-memcached)
+[![Build Status](https://travis-ci.com/iroquoisorg/ansible-role-firefox-driver.svg?branch=master)](https://travis-ci.com/iroquoisorg/ansible-role-firefox-driver)
 
 Ansible role for firefox-driver
 
@@ -14,7 +14,6 @@ This role was prepared and tested for Ubuntu 16.04.
 
 ```
 geckodriver_version: 0.19.1
-
 ```
 
 # Development
